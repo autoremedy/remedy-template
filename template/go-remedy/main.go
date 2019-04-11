@@ -1,35 +1,47 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"time"
 
-	"handler/function"
-
 	handler "github.com/autoremedy/go-function-sdk"
+	"github.com/autoremedy/remedy-template/template/go-remedy/function"
+	"github.com/prometheus/alertmanager/template"
 )
+
+func writeResponse(w http.ResponseWriter, msg string, err error) {
+	log.Printf("%s: %v", msg, err)
+	w.WriteHeader(http.StatusBadRequest)
+	w.Write([]byte(msg))
+}
 
 func makeRequestHandler() func(http.ResponseWriter, *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var input []byte
-
 		if r.Body != nil {
-			defer r.Body.Close()
+			writeResponse(w, "expected request body", nil)
+			return
+		}
 
-			bodyBytes, bodyErr := ioutil.ReadAll(r.Body)
+		defer r.Body.Close()
+		body, err := ioutil.ReadAll(r.Body)
+		if err != nil {
+			writeResponse(w, "failed to read body from request", err)
+			return
+		}
 
-			if bodyErr != nil {
-				log.Printf("Error reading body from request.")
-			}
-
-			input = bodyBytes
+		var data template.Data
+		err = json.Unmarshal(body, &data)
+		if err != nil {
+			writeResponse(w, "failed to unmarshal request body", err)
+			return
 		}
 
 		req := handler.Request{
-			Body:   input,
+			Data:   data,
 			Header: r.Header,
 			Method: r.Method,
 		}

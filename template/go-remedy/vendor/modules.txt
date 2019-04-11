@@ -1,2 +1,14 @@
 # github.com/autoremedy/go-function-sdk v0.0.0-20190408235126-6cb42a1563df
 github.com/autoremedy/go-function-sdk
+# github.com/prometheus/alertmanager v0.16.2
+github.com/prometheus/alertmanager/template
+github.com/prometheus/alertmanager/asset
+github.com/prometheus/alertmanager/types
+# github.com/prometheus/common v0.0.0-20181126121408-4724e9255275
+github.com/prometheus/common/model
+# github.com/shurcooL/httpfs v0.0.0-20171119174359-809beceb2371
+github.com/shurcooL/httpfs/filter
+github.com/shurcooL/httpfs/union
+github.com/shurcooL/httpfs/vfsutil
+# github.com/shurcooL/vfsgen v0.0.0-20180825020608-02ddb050ef6b
+github.com/shurcooL/vfsgen
