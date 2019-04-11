@@ -8,8 +8,9 @@ import (
 	"net/http"
 	"time"
 
+	"handler/function"
+
 	handler "github.com/autoremedy/go-function-sdk"
-	"github.com/autoremedy/remedy-template/template/go-remedy/function"
 	"github.com/prometheus/alertmanager/template"
 )
 
