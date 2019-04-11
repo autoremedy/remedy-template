@@ -2,6 +2,8 @@ package handler
 
 import (
 	"net/http"
+
+	"github.com/prometheus/alertmanager/template"
 )
 
 // Response of function call
@@ -19,7 +21,7 @@ type Response struct {
 
 // Request of function call
 type Request struct {
-	Body        []byte
+	Data        template.Data
 	Header      http.Header
 	QueryString string
 	Method      string
