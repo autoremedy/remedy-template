@@ -15,7 +15,7 @@ RUN test -z "$(gofmt -l $(find . -type f -name '*.go' -not -path "./vendor/*" -n
 
 RUN CGO_ENABLED=0 GOOS=linux \
     go build --ldflags "-s -w" -a -installsuffix cgo -o handler . && \
-    go test $(go list ./... | grep -v /vendor/) -cover
+    CGO_ENABLED=0 GOOS=linux go test $(go list ./... | grep -v /vendor/) -cover
 
 FROM alpine:3.9
 # Add non root user and certs
