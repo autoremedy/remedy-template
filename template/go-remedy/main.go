@@ -34,15 +34,15 @@ func makeRequestHandler() func(http.ResponseWriter, *http.Request) {
 			return
 		}
 
-		var data template.Data
-		err = json.Unmarshal(body, &data)
+		var alert template.Alert
+		err = json.Unmarshal(body, &alert)
 		if err != nil {
-			writeResponse(w, "failed to unmarshal request body", err)
+			writeResponse(w, "failed to unmarshal alert from request body", err)
 			return
 		}
 
 		req := handler.Request{
-			Data:   data,
+			Alert:  alert,
 			Header: r.Header,
 			Method: r.Method,
 		}

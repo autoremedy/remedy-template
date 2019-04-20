@@ -11,7 +11,7 @@ import (
 func Handle(req handler.Request) (handler.Response, error) {
 	var err error
 
-	message := fmt.Sprintf("Hello world, input was: %+v", req.Data)
+	message := fmt.Sprintf("Alert: %+v", req.Alert)
 
 	return handler.Response{
 		Body:       []byte(message),
