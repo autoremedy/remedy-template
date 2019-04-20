@@ -22,7 +22,7 @@ func writeResponse(w http.ResponseWriter, msg string, err error) {
 
 func makeRequestHandler() func(http.ResponseWriter, *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
-		if r.Body != nil {
+		if r.Body == nil {
 			writeResponse(w, "expected request body", nil)
 			return
 		}
