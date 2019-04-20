@@ -19,9 +19,15 @@ type Response struct {
 	Header http.Header
 }
 
-// Request of function call
+// Configuration options for a Request
+type Configuration struct {
+	Options map[string]string
+}
+
+// Request of remediation function call
 type Request struct {
-	Data        template.Data
+	Alert       template.Alert
+	Config      Configuration
 	Header      http.Header
 	QueryString string
 	Method      string
